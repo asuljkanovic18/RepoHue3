@@ -26,6 +26,7 @@ public class Weapons {
     private final int speed;
     private final int strength;
     private final int value;
+    ArrayList<Weapons> weapon = new ArrayList<Weapons>();
 
     public Weapons(String name, CombatTyp combattyp, DamageTyp damagetyp, int damage, int speed, int strength, int value) {
         this.name = name;
@@ -36,6 +37,10 @@ public class Weapons {
         this.strength = strength;
         this.value = value;
     }
+
+    public int getDamage() {
+        return damage;
+    }
     
 
     
@@ -43,7 +48,7 @@ public class Weapons {
     public void Reader(String files) throws FileNotFoundException, IOException{
         FileReader file = new FileReader(files);
         BufferedReader br = new BufferedReader(file);
-        ArrayList<Weapons> weapon = new ArrayList<Weapons>();
+        
         
         String s="";
         try {
@@ -64,10 +69,9 @@ public class Weapons {
             Logger.getLogger(Weapons.class.getName()).log(Level.SEVERE, null, ex);
         }
         br.close();
-        
-        
-        
-        
-        
+    }
+    
+    public void sort(){
+       weapon.sort((d1, d2) -> d1.getDamage() - d2.getDamage());
     }
 }
